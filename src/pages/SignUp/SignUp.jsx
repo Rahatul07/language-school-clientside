@@ -1,11 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
   const {
     register,
     handleSubmit,
@@ -36,7 +41,7 @@ const SignUp = () => {
               if (data.insertedId) {
                 reset();
                 Swal.fire({
-                  position: "top-end",
+                  position: "center",
                   icon: "success",
                   title: "User created successfully.",
                   showConfirmButton: false,
@@ -103,12 +108,12 @@ const SignUp = () => {
                   <span className="text-red-600">Email is required</span>
                 )}
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="password"
+                  type={passwordVisible ? "text" : "password"}
                   {...register("password", {
                     required: true,
                     minLength: 6,
@@ -116,8 +121,19 @@ const SignUp = () => {
                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])/,
                   })}
                   placeholder="password"
-                  className="input input-bordered"
+                  className="input input-bordered "
                 />
+                <button
+                  type="button"
+                  className="absolute inset-y-12 right-0 flex items-center px-2 text-gray-500"
+                  onClick={togglePasswordVisibility}
+                >
+                  {passwordVisible ? (
+                    <AiFillEyeInvisible className="h-5 w-5 mt-7" />
+                  ) : (
+                    <AiFillEye className="h-5 w-5 mt-7" />
+                  )}
+                </button>
                 {errors.password?.type === "required" && (
                   <p className="text-red-600 pt-3">Password is required</p>
                 )}
@@ -137,12 +153,12 @@ const SignUp = () => {
                   </p>
                 )}
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <label className="label">
                   <span className="label-text">Confirm Password</span>
                 </label>
                 <input
-                  type="password"
+                  type={passwordVisible ? "text" : "password"}
                   {...register("confirmPassword", {
                     required: true,
                     validate: (value) => value === watch("password"),
@@ -150,6 +166,17 @@ const SignUp = () => {
                   placeholder="Confirm password"
                   className="input input-bordered"
                 />
+                <button
+                  type="button"
+                  className="absolute inset-y-12 right-0 flex items-center px-2 bg-primary text-gray-500"
+                  onClick={togglePasswordVisibility}
+                >
+                  {passwordVisible ? (
+                    <AiFillEyeInvisible className="h-5 w-5 mt-7" />
+                  ) : (
+                    <AiFillEye className="h-5 w-5 mt-7" />
+                  )}
+                </button>
                 {errors.confirmPassword?.type === "required" && (
                   <p className="text-red-600">Confirm Password is required</p>
                 )}

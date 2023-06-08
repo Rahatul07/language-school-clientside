@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
-import { FaGoogle } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+
 import { AuthContext } from "../../../provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -33,12 +34,12 @@ const SocialLogin = () => {
   };
   return (
     <div>
-      <div className="w-full text-center my-4">
+      <div className="w-full  text-center my-4">
         <button
           onClick={handleGoogleSignIn}
-          className=" btn btn-circle btn-outline"
+          className=" btn text-4xl btn-circle btn-outline "
         >
-          <FaGoogle></FaGoogle>
+          <FcGoogle></FcGoogle>
         </button>
       </div>
     </div>
