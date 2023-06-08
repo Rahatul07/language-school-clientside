@@ -9,10 +9,10 @@ import {
 const Footer = () => {
   return (
     <div>
-      <footer className="bg-secondary  px-10">
+      <footer className="bg-secondary min-h-screen  px-10">
         <div className="container mx-auto py-8 px-4 ">
           <div className="flex flex-col md:flex-row ">
-            <div className="w-full   py-10 mr-5 pb-8 px-5 md:w-1/3 mb-5">
+            <div className="w-full   py-10 mr-5  px-5 md:w-1/3 mb-5">
               <img className="w-10/12 pb-10" src={logo} alt="" />
               <li className="pb-3">
                 <a href="#" className="text-gray-400 hover:text-primary">
