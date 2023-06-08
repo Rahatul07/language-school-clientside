@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import logo from "../../../assets/logo.png";
+import profile from "../../../assets/profile.jpg";
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
@@ -28,13 +29,28 @@ const NavBar = () => {
 
       {user ? (
         <>
-          <button onClick={handleLogOut} className="btn btn-ghost">
-            LogOut
-          </button>
           <li>
             <Link to={"/dashboard"}>
               <button>Dashboard</button>
             </Link>
+          </li>
+          <li>
+            <button
+              onClick={handleLogOut}
+              className="menu menu-horizontal px-1 text-2xl mx-3 items-center "
+            >
+              LogOut
+            </button>
+          </li>
+          <li className=" mx-10">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  title={user?.displayName}
+                  src={user ? user?.photoURL : { profile }}
+                />
+              </div>
+            </label>
           </li>
         </>
       ) : (
@@ -55,7 +71,7 @@ const NavBar = () => {
       <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-xl bg-base-100 border-2 text-black">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost  lg:hidden">
               <Hamburger toggled={isOpen} toggle={setOpen} />
             </label>
             <ul
@@ -73,9 +89,6 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1 text-2xl  items-center">
             {navOptions}
           </ul>
-        </div>
-        <div className="navbar-end">
-          <a className="btn">Get started</a>
         </div>
       </div>
     </>
