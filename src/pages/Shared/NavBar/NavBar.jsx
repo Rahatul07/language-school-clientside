@@ -68,7 +68,7 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="navbar fixed z-10 bg-opacity-30 max-w-screen-2xl bg-base-100 border-2 text-black">
+      <div className="navbar fixed z-10 bg-opacity-50 max-w-screen-2xl bg-base-100 border-2 text-black">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost  lg:hidden">
@@ -83,7 +83,7 @@ const NavBar = () => {
               {navOptions}
             </ul>
           </div>
-          <img src={logo} className="h-20 w-44" alt="logo" />
+          <img src={logo} className="h-16 w-48" alt="logo" />
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-2xl  items-center">
