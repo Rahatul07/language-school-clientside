@@ -3,11 +3,10 @@ import React from "react";
 import { BsFacebook, BsInstagram, BsLinkedin } from "react-icons/bs";
 const InstructorCard = ({ instructor }) => {
   const { image, instructorName } = instructor;
-  console.log(instructor);
+
   return (
     <div className="">
       <div className="grid grid-cols-3 w-10/12 mx-auto mb-20 gap-10">
-        {/* Instructor-1 */}
         <div className="">
           <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-full h-72 w-72">
             <div className="h-full  w-auto ">

@@ -1,7 +1,6 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
 const ClassesCard = ({ course }) => {
-  console.log(course);
   const { courseName, image, instructorName, price, totalStudents } = course;
   return (
     <div>
@@ -31,7 +30,7 @@ const ClassesCard = ({ course }) => {
             </div>
           </div>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Buy Now</button>
+            <button className="btn btn-primary text-white">Purchase</button>
           </div>
         </div>
       </div>

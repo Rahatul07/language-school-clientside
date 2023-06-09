@@ -3,9 +3,10 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import Swal from "sweetalert2";
-import SocialLogin from "../SocialLogin/SocialLogin";
-import { AuthContext } from "../../../provider/AuthProvider";
+
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../provider/AuthProvider";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);

@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import logo from "../../../assets/logo.png";
-import profile from "../../../assets/profile.jpg";
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
-
+  console.log(user);
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -24,7 +23,7 @@ const NavBar = () => {
         <Link to="/instructors">Instructors</Link>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <Link to="/allClasses">Classes</Link>
       </li>
 
       {user ? (
@@ -42,16 +41,17 @@ const NavBar = () => {
               LogOut
             </button>
           </li>
-          <li className=" mx-10">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-              <div className="w-10 rounded-full">
-                <img
-                  title={user?.displayName}
-                  src={user ? user?.photoURL : { profile }}
-                />
-              </div>
-            </label>
-          </li>
+          {user && (
+            <li className=" mx-10">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  {user.photoURL && (
+                    <img title={user?.displayName} src={user?.photoURL} />
+                  )}
+                </div>
+              </label>
+            </li>
+          )}
         </>
       ) : (
         <>

@@ -18,18 +18,25 @@ const SignUp = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, logOut, setLoading } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
+      logOut();
+      navigate("/login");
       console.log(loggedUser);
+      setLoading(true);
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
-          const saveUser = { name: data.name, email: data.email };
-          fetch("http://localhost:5000/users", {
+          const saveUser = {
+            name: data.name,
+            email: data.email,
+          };
+          fetch("https://language-school-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -47,7 +54,7 @@ const SignUp = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                navigate("/");
+                setLoading(false);
               }
             });
         })
