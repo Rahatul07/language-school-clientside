@@ -1,6 +1,6 @@
 ### LANGUAGE-SCHOOL
 
-![Logo](/src/assets/logo.png)
+![Logo](/src/assets/logo2.png)
 
 Live site: https://language-school-a9110.web.app
 
