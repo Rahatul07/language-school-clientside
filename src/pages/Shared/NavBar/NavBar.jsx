@@ -7,7 +7,7 @@ import logo from "../../../assets/logo.png";
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+
   const handleLogOut = () => {
     logOut()
       .then(() => {})

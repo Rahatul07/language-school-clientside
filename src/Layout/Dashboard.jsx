@@ -1,12 +1,12 @@
 import { NavLink, Outlet } from "react-router-dom";
-import {
-  FaShoppingCart,
-  FaWallet,
-  FaCalendarAlt,
-  FaHome,
-} from "react-icons/fa";
-
+import { FaChalkboardTeacher } from "react-icons/fa";
+import { GiClassicalKnowledge } from "react-icons/gi";
+import { BiPurchaseTag } from "react-icons/bi";
+import { FaHome } from "react-icons/fa";
+import { AiOutlineSelect } from "react-icons/ai";
+import useAdmin from "../hooks/useAdmin";
 const Dashboard = () => {
+  const [isAdmin] = useAdmin();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -16,43 +16,51 @@ const Dashboard = () => {
           htmlFor="my-drawer-2"
           className="btn btn-primary drawer-button lg:hidden"
         >
-          Open drawer
+          Open Dashboard
         </label>
       </div>
       <div className="drawer-side bg-primary">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80">
-          <li>
-            <NavLink to="/dashboard/home">
-              <FaHome></FaHome> User Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/reservations">
-              <FaCalendarAlt></FaCalendarAlt> Reservations
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/history">
-              <FaWallet></FaWallet> Payment History
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/myCart">
-              <FaShoppingCart></FaShoppingCart> My Cart
-            </NavLink>
-          </li>
+        <ul className="menu p-4 w-80 text-xl text-white gap-3">
+          {isAdmin ? (
+            <>
+              <li>
+                <NavLink to="/dashboard/manageClasses">Manage Classes</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manageUsers">Manage Users</NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/dashboard/selectedClasses">
+                  <AiOutlineSelect /> My Selected Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/enrolledClasses">
+                  <BiPurchaseTag /> Enrolled Classes
+                </NavLink>
+              </li>
+            </>
+          )}
+
           <div className="divider"></div>
           <li>
             <NavLink to="/">
               <FaHome></FaHome> Home
-            </NavLink>{" "}
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/menu"> Our Menu</NavLink>
+            <NavLink to="/instructors">
+              <FaChalkboardTeacher /> Instructors
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/order/salad">Order Food</NavLink>
+            <NavLink to="/allClasses">
+              <GiClassicalKnowledge /> Classes
+            </NavLink>
           </li>
         </ul>
       </div>

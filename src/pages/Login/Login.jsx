@@ -45,7 +45,9 @@ const Login = () => {
       <div className="hero min-h-screen bg-base-200 pt-28">
         <div className=" w-3/4 mx-auto text-center ">
           <div className="text-center ">
-            <h1 className="text-5xl font-bold pb-10">Login now!</h1>
+            <h1 className="text-5xl font-bold pb-10 text-primary">
+              Login now!
+            </h1>
           </div>
           <div className="card  w-96 mx-auto shadow-2xl bg-base-100 mb-20">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -64,6 +66,7 @@ const Login = () => {
                   <span className="text-red-600">Email is required</span>
                 )}
               </div>
+
               <div className="form-control relative">
                 <label className="label">
                   <span className="label-text">Password</span>
@@ -78,23 +81,26 @@ const Login = () => {
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-12 right-0 flex items-center px-2 text-gray-500"
+                  className=" inset-y-12 right-0 flex items-center px-2 text-gray-500"
                   onClick={togglePasswordVisibility}
                 >
                   {passwordVisible ? (
-                    <AiFillEyeInvisible className="h-5 w-5 mt-7" />
+                    <AiFillEyeInvisible className="absolute right-5 top-14 " />
                   ) : (
-                    <AiFillEye className="h-5 w-5 mt-7" />
+                    <AiFillEye className="absolute right-5 top-14 " />
                   )}
                 </button>
                 {errors.password?.type === "required" && (
                   <p className="text-red-600 pt-3">Password is required</p>
                 )}
+                {errors.password?.type !== "required" && (
+                  <p className="text-red-600 pt-3">Password does not match</p>
+                )}
               </div>
 
               <div className="form-control mt-6">
                 <input
-                  className="btn btn-primary"
+                  className="btn  btn-primary text-white"
                   type="submit"
                   value="login"
                 />

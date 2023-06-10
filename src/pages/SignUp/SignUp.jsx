@@ -25,10 +25,10 @@ const SignUp = () => {
   const onSubmit = (data) => {
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
+      setLoading(true);
       logOut();
       navigate("/login");
       console.log(loggedUser);
-      setLoading(true);
 
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
@@ -36,7 +36,7 @@ const SignUp = () => {
             name: data.name,
             email: data.email,
           };
-          fetch("https://language-school-server.vercel.app/users", {
+          fetch("http://localhost:5000/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -46,7 +46,6 @@ const SignUp = () => {
             .then((res) => res.json())
             .then((data) => {
               if (data.insertedId) {
-                reset();
                 Swal.fire({
                   position: "center",
                   icon: "success",
@@ -54,7 +53,7 @@ const SignUp = () => {
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                setLoading(false);
+                reset();
               }
             });
         })
@@ -67,7 +66,9 @@ const SignUp = () => {
       <div className="hero min-h-screen bg-base-200 pt-28">
         <div className=" w-3/4 mx-auto text-center ">
           <div className="text-center ">
-            <h1 className="text-5xl font-bold pb-10">Sign up now!</h1>
+            <h1 className="text-5xl font-bold pb-10 text-primary">
+              Sign up now!
+            </h1>
           </div>
           <div className="card  w-96 mx-auto shadow-2xl bg-base-100 mb-20">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -132,13 +133,13 @@ const SignUp = () => {
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-12 right-0 flex items-center px-2 text-gray-500"
+                  className=" inset-y-12 right-0 flex items-center px-2 text-gray-500"
                   onClick={togglePasswordVisibility}
                 >
                   {passwordVisible ? (
-                    <AiFillEyeInvisible className="h-5 w-5 mt-7" />
+                    <AiFillEyeInvisible className="absolute right-5 top-14 " />
                   ) : (
-                    <AiFillEye className="h-5 w-5 mt-7" />
+                    <AiFillEye className="absolute right-5 top-14 " />
                   )}
                 </button>
                 {errors.password?.type === "required" && (
@@ -175,13 +176,13 @@ const SignUp = () => {
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-12 right-0 flex items-center px-2 bg-primary text-gray-500"
+                  className=" inset-y-12 right-0 flex items-center px-2 bg-primary text-gray-500"
                   onClick={togglePasswordVisibility}
                 >
                   {passwordVisible ? (
-                    <AiFillEyeInvisible className="h-5 w-5 mt-7" />
+                    <AiFillEyeInvisible className="absolute right-5 top-14 " />
                   ) : (
-                    <AiFillEye className="h-5 w-5 mt-7" />
+                    <AiFillEye className="absolute right-5 top-14 " />
                   )}
                 </button>
                 {errors.confirmPassword?.type === "required" && (
@@ -194,7 +195,7 @@ const SignUp = () => {
 
               <div className="form-control mt-6">
                 <input
-                  className="btn btn-primary"
+                  className="btn text-white btn-primary"
                   type="submit"
                   value="Sign Up"
                 />
