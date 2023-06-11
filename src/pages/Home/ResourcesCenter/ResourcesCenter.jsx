@@ -20,7 +20,7 @@ const ResourcesCenter = () => {
         <div className="hero w-full h-[500px] ">
           <div className="hero-overlay bg-opacity-30"></div>
           <div className="hero-content text-center text-neutral-content  ">
-            <div className=" bg-black h-96 md:w-[1020px] bg-opacity-30  flex-row items-center justify-center py-28">
+            <div className=" bg-black h-96 md:w-11/12 bg-opacity-30 px-10 flex-row items-center justify-center py-10 md:py-28">
               <h1 className="mb-5 uppercase text-5xl font-bold text-gray-300">
                 Visit Our Language Resources Centre
               </h1>
@@ -29,7 +29,7 @@ const ResourcesCenter = () => {
                 resources
               </p>
               <Link to={`/allClasses`}>
-                <button className="btn btn-primary w-36 text-white">
+                <button className="btn btn-primary w-36 text-white ">
                   Visit Now
                 </button>
               </Link>

@@ -6,6 +6,7 @@ import Features from "../Features/Features";
 import FeaturedInstructors from "../FeaturedInstructors/FeaturedInstructors";
 import { Helmet } from "react-helmet-async";
 import ResourcesCenter from "../ResourcesCenter/ResourcesCenter";
+import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <Banner />
       <Features />
       <Classes />
+      <Testimonials />
       <FeaturedInstructors />
       <ResourcesCenter />
     </>
