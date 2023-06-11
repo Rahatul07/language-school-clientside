@@ -21,7 +21,7 @@ const ClassesCard = ({ course }) => {
   };
 
   return (
-    <div>
+    <div data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="1500">
       <div
         className={`card w-96 bg-base-100 shadow-xl ${
           isSoldOut ? "bg-red-500" : ""

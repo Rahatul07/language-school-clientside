@@ -5,7 +5,7 @@ const InstructorCard = ({ instructor }) => {
   const { image, instructorName } = instructor;
 
   return (
-    <div className="">
+    <div data-aos="flip-left" data-aos-easing="linear" data-aos-duration="1500">
       <div className="grid grid-cols-3 w-10/12 mx-auto mb-20 gap-10">
         <div className="">
           <div className="group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30 rounded-full h-72 w-72">

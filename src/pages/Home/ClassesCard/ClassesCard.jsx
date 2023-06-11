@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ClassesCard = ({ course }) => {
   const { courseName, image, availableSeats, totalStudents } = course;
   return (
-    <div>
+    <div data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="1500">
       <div className="card w-96 bg-base-100 shadow-xl">
         <figure>
           <img src={image} alt="course" />

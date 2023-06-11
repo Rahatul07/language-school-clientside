@@ -1,10 +1,16 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
+
 const AllInstructorsCard = ({ instructor }) => {
   const { className, image, email, instructorName, takenClasses } = instructor;
   return (
     <div>
-      <div className="card w-96 bg-base-100 shadow-xl">
+      <div
+        className="card w-96 bg-base-100 shadow-xl"
+        data-aos="zoom-in"
+        data-aos-easing="linear"
+        data-aos-duration="1500"
+      >
         <figure>
           <img src={image} alt="course" />
         </figure>
