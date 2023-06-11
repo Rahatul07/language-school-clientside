@@ -38,10 +38,12 @@ const EnrolledClasses = () => {
   return (
     <div className="w-full">
       <Helmet>
-        <title>Language-School | Selected Classes</title>
+        <title>Language-School | Enrolled Classes</title>
       </Helmet>
       <div className="uppercase font-semibold h-[60px] flex justify-evenly items-center ">
-        <h3 className="text-3xl text-primary">Total Items: {classes.length}</h3>
+        <h3 className="text-3xl text-primary">
+          My Enrolled Classes: {classes.length}
+        </h3>
 
         {/* <Link to="/dashboard/payment">
                     <button className="btn btn-warning btn-sm">PAY</button>

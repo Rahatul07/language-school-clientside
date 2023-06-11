@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { FaTrashAlt } from "react-icons/fa";
+import { MdPayment } from "react-icons/md";
 import Swal from "sweetalert2";
 
 import useClasses from "../../../hooks/useClasses";
@@ -41,7 +42,9 @@ const SelectedClasses = () => {
         <title>Language-School | Selected Classes</title>
       </Helmet>
       <div className="uppercase font-semibold h-[60px] flex justify-evenly items-center ">
-        <h3 className="text-3xl text-primary">Total Items: {classes.length}</h3>
+        <h3 className="text-3xl text-primary">
+          My Selected Classes: {classes.length}
+        </h3>
 
         {/* <Link to="/dashboard/payment">
                     <button className="btn btn-warning btn-sm">PAY</button>
@@ -57,6 +60,7 @@ const SelectedClasses = () => {
               <th>Item Name</th>
               <th>Instructor Name</th>
               <th>Price</th>
+              <th>Pay</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -77,6 +81,11 @@ const SelectedClasses = () => {
                 <td>{type.courseName}</td>
                 <td>{type.instructorName}</td>
                 <td>${type.price}</td>
+                <td>
+                  <button className="btn btn-ghost bg-primary text-xl text-white">
+                    <MdPayment />
+                  </button>
+                </td>
                 <td>
                   <button
                     onClick={() => handleDelete(type)}

@@ -24,20 +24,24 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+  const [firebaseError, setFirebaseError] = useState("");
   const onSubmit = (data) => {
-    signIn(data.email, data.password).then((result) => {
-      const user = result.user;
-      console.log(user);
+    setFirebaseError("");
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
 
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "User logged in successfully.",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      navigate(from, { replace: true });
-    });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User logged in successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => setFirebaseError(error.message));
   };
 
   return (
@@ -93,8 +97,11 @@ const Login = () => {
                 {errors.password?.type === "required" && (
                   <p className="text-red-600 pt-3">Password is required</p>
                 )}
-                {errors.password?.type !== "required" && (
+                {errors.password?.type === "required" && (
                   <p className="text-red-600 pt-3">Password does not match</p>
+                )}
+                {firebaseError && (
+                  <p className="text-red-600 pt-3">{firebaseError}</p>
                 )}
               </div>
 

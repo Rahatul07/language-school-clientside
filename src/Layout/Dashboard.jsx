@@ -4,9 +4,9 @@ import { GiClassicalKnowledge } from "react-icons/gi";
 import { BiPurchaseTag } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
 import { AiOutlineSelect } from "react-icons/ai";
-import useAdmin from "../hooks/useAdmin";
+// import useAdmin from "../hooks/useAdmin";
 const Dashboard = () => {
-  const [isAdmin] = useAdmin();
+  // const [isAdmin] = useAdmin();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -22,7 +22,23 @@ const Dashboard = () => {
       <div className="drawer-side bg-primary">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 text-xl text-white gap-3">
-          {isAdmin ? (
+          <li>
+            <NavLink to="/dashboard/manageClasses">Manage Classes</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/manageUsers">Manage Users</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/selectedClasses">
+              <AiOutlineSelect /> My Selected Classes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/enrolledClasses">
+              <BiPurchaseTag /> Enrolled Classes
+            </NavLink>
+          </li>
+          {/* {isAdmin ? (
             <>
               <li>
                 <NavLink to="/dashboard/manageClasses">Manage Classes</NavLink>
@@ -44,7 +60,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
             </>
-          )}
+          )} */}
 
           <div className="divider"></div>
           <li>
