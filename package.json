@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.12",
+    "@types/es6-promise": "^3.3.0",
     "aos": "^2.3.4",
     "axios": "^1.4.0",
+    "es6-promise": "^4.2.8",
     "firebase": "^9.22.1",
     "hamburger-react": "^2.5.0",
     "localforage": "^1.10.0",

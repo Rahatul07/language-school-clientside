@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import logo from "../../../assets/logo.png";
+import profileImage from "../../../assets/profile/profile.jpg";
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, userRole } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
@@ -17,53 +18,46 @@ const NavBar = () => {
   const navOptions = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <Link
+          to="/"
+          aria-label="Home"
+          title="Home"
+          className={({ isActive }) => (isActive ? "active" : "default")}
+        >
+          Home
+        </Link>
       </li>
 
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <Link
+          to="/instructors"
+          className={({ isActive }) => (isActive ? "active" : "default")}
+        >
+          Instructors
+        </Link>
       </li>
 
       <li>
-        <Link to="/allClasses">Classes</Link>
+        <Link
+          to="/allClasses"
+          className={({ isActive }) => (isActive ? "active" : "default")}
+        >
+          Classes
+        </Link>
       </li>
-
-      {user ? (
-        <>
-          <li>
-            <Link to={"/dashboard"}>
-              <button>Dashboard</button>
-            </Link>
-          </li>
-          <li>
-            <button
-              onClick={handleLogOut}
-              className="menu menu-horizontal px-1 text-2xl mx-3 items-center "
-            >
-              LogOut
-            </button>
-          </li>
-          {user && (
-            <li className=" mx-10">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  {user.photoURL && (
-                    <img title={user?.displayName} src={user?.photoURL} />
-                  )}
-                </div>
-              </label>
-            </li>
-          )}
-        </>
-      ) : (
-        <>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/signUp">Sign Up</Link>
-          </li>
-        </>
+      {user && (
+        <li>
+          <Link
+            to={`${
+              (userRole === "student" && "/dashboard/my_selected_class") ||
+              (userRole === "admin" && "/dashboard/manage_classes") ||
+              (userRole === "teacher" && "/dashboard/my_classes")
+            }`}
+            className={({ isActive }) => (isActive ? "active" : "default")}
+          >
+            Dashboard
+          </Link>
+        </li>
       )}
     </>
   );
@@ -82,14 +76,63 @@ const NavBar = () => {
                 isOpen || "hidden"
               }`}
             >
-              {navOptions}
+              <div className="space-y-5">
+                {user && (
+                  <img
+                    className="w-12 h-12 rounded-full mx-auto mt-5 border-2 border-primary"
+                    src={user && user.photoURL ? user.photoURL : profileImage}
+                  />
+                )}
+                {navOptions}
+                {/* login logout button  */}
+                {user ? (
+                  <button
+                    onClick={handleLogOut}
+                    className="btn btn-error text-white"
+                  >
+                    LogOut
+                  </button>
+                ) : (
+                  <Link to="/login">
+                    {" "}
+                    <button className="btn btn-neutral">Login</button>
+                  </Link>
+                )}
+              </div>
             </ul>
           </div>
           <img src={logo} className="h-16 w-48" alt="logo" />
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="hidden md:flex space-x-5 mr-20">
           <ul className="menu menu-horizontal px-1 text-2xl  items-center">
-            {navOptions}
+            <div className="flex justify-between items-center ">
+              <ul className="hidden md:flex gap-5">{navOptions}</ul>
+
+              <div className="hidden md:flex space-x-5">
+                {user && (
+                  <img
+                    className="w-12 h-12 rounded-full ml-10"
+                    src={user && user.photoURL ? user.photoURL : profileImage}
+                  />
+                )}
+                {user ? (
+                  <button
+                    onClick={handleLogOut}
+                    className="btn btn-error text-white"
+                  >
+                    LogOut
+                  </button>
+                ) : (
+                  <Link to="/login">
+                    <button className="btn btn-neutral">Login</button>
+                  </Link>
+                )}
+              </div>
+
+              <div onClick={() => setOpen(!isOpen)} className="md:hidden">
+                <Hamburger hideOutline={false} />
+              </div>
+            </div>
           </ul>
         </div>
       </div>

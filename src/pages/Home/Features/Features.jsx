@@ -111,7 +111,7 @@ const Features = () => {
               Sup Accommodation
             </h1>
             <small className="text-gray-400">
-              Over 100 rooms in premium residences and welcoming homestays
+              Over 100 rooms in premium residences and welcoming home stays
             </small>
           </div>
         </div>
