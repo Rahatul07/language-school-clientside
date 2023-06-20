@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 .active {
-  @apply font-medium tracking-wide text-warning transition-colors  duration-200  hover:text-white;
+  @apply font-medium tracking-wide text-white transition-colors  duration-200  hover:text-primary;
 }
 
 .default {
-  @apply tracking-wide text-white transition-colors duration-200  hover:text-warning;
+  @apply tracking-wide text-gray-600 transition-colors duration-200  hover:text-primary;
 }

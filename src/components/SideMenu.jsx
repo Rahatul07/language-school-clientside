@@ -27,31 +27,35 @@ const SideMenu = () => {
       <ul className="dashboard-links">
         {userRole === "student" && (
           <>
-            <li className="mb-3">
+            <li className="mb-3 ">
               <NavLink
                 to="/dashboard/my_selected_class"
                 className={({ isActive }) =>
                   isActive ? "dashboard_link_active" : "dashboard_link_default"
                 }
               >
-                <span className="text-lg">
-                  <FiShoppingCart />
-                </span>{" "}
-                Selected Classes
+                <div className="flex items-center">
+                  <span className="text-lg text-white pr-3">
+                    <FiShoppingCart />
+                  </span>{" "}
+                  <span>Selected Classes</span>
+                </div>
               </NavLink>
             </li>
 
             <li className="mb-3">
               <NavLink
-                to="/dashboard/my_enroled_class"
+                to="/dashboard/my_enrolled_class"
                 className={({ isActive }) =>
                   isActive ? "dashboard_link_active" : "dashboard_link_default"
                 }
               >
-                <span className="text-lg">
-                  <BsCartCheck />
-                </span>{" "}
-                Enroled Classes
+                <div className="flex items-center">
+                  <span className="text-lg text-white pr-3">
+                    <BsCartCheck />
+                  </span>{" "}
+                  <span> Enrolled Classes</span>
+                </div>
               </NavLink>
             </li>
 
@@ -62,10 +66,12 @@ const SideMenu = () => {
                   isActive ? "dashboard_link_active" : "dashboard_link_default"
                 }
               >
-                <span className="text-lg">
-                  <BsWallet2 />
-                </span>{" "}
-                Payment History
+                <div className="flex items-center">
+                  <span className="text-lg text-white pr-3">
+                    <BsWallet2 />
+                  </span>{" "}
+                  <span> Payment History</span>
+                </div>
               </NavLink>
             </li>
           </>
@@ -81,10 +87,12 @@ const SideMenu = () => {
                   isActive ? "dashboard_link_active" : "dashboard_link_default"
                 }
               >
-                <span className="text-2xl text-white">
-                  <MdOutlinePostAdd />
-                </span>{" "}
-                Add A Class
+                <div className="flex items-center">
+                  <span className="text-lg text-white pr-3">
+                    <MdOutlinePostAdd />
+                  </span>{" "}
+                  <span> Add A Class</span>
+                </div>
               </NavLink>
             </li>
 
@@ -95,10 +103,12 @@ const SideMenu = () => {
                   isActive ? "dashboard_link_active" : "dashboard_link_default"
                 }
               >
-                <span className="text-lg">
-                  <SiGoogleclassroom />
-                </span>{" "}
-                My Classes
+                <div className="flex items-center">
+                  <span className="text-lg text-white pr-3">
+                    <SiGoogleclassroom />
+                  </span>{" "}
+                  <span> My Classes</span>
+                </div>
               </NavLink>
             </li>
           </>
@@ -107,17 +117,19 @@ const SideMenu = () => {
         {/* admin route  */}
         {userRole === "admin" && (
           <>
-            <li className="mb-3">
+            <li className="mb-3 ">
               <NavLink
                 to="/dashboard/manage_classes"
                 className={({ isActive }) =>
                   isActive ? "dashboard_link_active" : "dashboard_link_default"
                 }
               >
-                <span className="text-lg text-white">
-                  <BsBuildingGear />
-                </span>{" "}
-                Manage Classes
+                <div className="flex items-center">
+                  <span className="text-lg text-white pr-3">
+                    <BsBuildingGear />
+                  </span>{" "}
+                  <span>Manage Classes</span>
+                </div>
               </NavLink>
             </li>
 
@@ -128,10 +140,12 @@ const SideMenu = () => {
                   isActive ? "dashboard_link_active" : "dashboard_link_default"
                 }
               >
-                <span className="text-lg">
-                  <FaUsersCog />
-                </span>{" "}
-                Manage Sudents
+                <div className="flex items-center">
+                  <span className="text-lg text-white pr-3">
+                    <FaUsersCog />
+                  </span>{" "}
+                  <span>Manage Students</span>
+                </div>
               </NavLink>
             </li>
           </>
@@ -149,10 +163,12 @@ const SideMenu = () => {
                 isActive ? "dashboard_link_active" : "dashboard_link_default"
               }
             >
-              <span className="text-lg text-white">
-                <AiOutlineHome />
-              </span>
-              Home
+              <div className="flex items-center">
+                <span className="text-lg text-white pr-3">
+                  <AiOutlineHome />
+                </span>{" "}
+                <span> Home</span>
+              </div>
             </NavLink>
           </li>
 
@@ -163,10 +179,12 @@ const SideMenu = () => {
                 isActive ? "dashboard_link_active" : "dashboard_link_default"
               }
             >
-              <span className="text-lg">
-                <MdOutlineLibraryBooks />
-              </span>{" "}
-              Classes
+              <div className="flex items-center">
+                <span className="text-lg text-white pr-3">
+                  <MdOutlineLibraryBooks />
+                </span>{" "}
+                <span> Classes</span>
+              </div>
             </NavLink>
           </li>
           <li className="mb-3">
@@ -176,21 +194,24 @@ const SideMenu = () => {
                 isActive ? "dashboard_link_active" : "dashboard_link_default"
               }
             >
-              <span className="text-lg">
-                <GiTeacher />
-              </span>{" "}
-              Teachers
+              <div className="flex items-center">
+                <span className="text-lg text-white pr-3">
+                  <GiTeacher />
+                </span>{" "}
+                <span> Instructors</span>
+              </div>
             </NavLink>
           </li>
 
           {/* logOut button  */}
           <li className="mb-3">
             <label onClick={handleLogOut} className="dashboard_link_default">
-              {" "}
-              <span className="text-lg">
-                <HiOutlineLogout />
-              </span>{" "}
-              LogOut
+              <div className="flex items-center">
+                <span className="text-lg text-white pr-3">
+                  <HiOutlineLogout />
+                </span>{" "}
+                <span> LogOut</span>
+              </div>
             </label>
           </li>
         </>

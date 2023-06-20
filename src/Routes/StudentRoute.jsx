@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router";
 import { useContext } from "react";
+import { useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
-import Loader from "../pages/Shared/Loader";
 import useRole from "../hooks/useRole";
+import Loader from "../pages/Shared/Loader";
 
-const AdminRoute = ({ children }) => {
+const StudentRoute = ({ children }) => {
   const { logOut } = useContext(AuthContext);
   const { role, roleLoading } = useRole();
   const navigate = useNavigate();
@@ -13,11 +13,11 @@ const AdminRoute = ({ children }) => {
     return <Loader />;
   }
 
-  if (role === "admin") {
+  if (role === "student") {
     return children;
   }
   logOut();
   navigate("/login");
 };
 
-export default AdminRoute;
+export default StudentRoute;

@@ -1,14 +1,15 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import "./CheckOutForm.css";
-import useAuth from "../../hooks/useAuth";
-import { useEffect, useState } from "react";
+
+import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { AuthContext } from "../../provider/AuthProvider";
 const CheckOutForm = ({ bookingData }) => {
   const stripe = useStripe();
   const elements = useElements();
-  const { user } = useAuth();
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [clientSecret, setClientSecret] = useState("");
   const [axiosSecure] = useAxiosSecure();

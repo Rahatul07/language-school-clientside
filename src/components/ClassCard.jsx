@@ -12,11 +12,11 @@ const ClassCard = ({ singleClass }) => {
   const [axiosSecure] = useAxiosSecure();
   const { user, userRole } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { image, name, price, seats, teacher_name, enrolled } =
+  const { image, name, price, seats, instructorName, enrolled } =
     singleClass || {};
   console.log("role from select card", userRole);
   const handleSelectClass = (singleClass) => {
-    const { image, name, price, teacher_email, _id, seats, enrolled } =
+    const { image, name, price, instructor_email, _id, seats, enrolled } =
       singleClass || {};
     const selectItem = {
       name,
@@ -24,8 +24,8 @@ const ClassCard = ({ singleClass }) => {
       price,
       classId: _id,
       email: user?.email,
-      teacher_email,
-      teacher_name,
+      instructor_email,
+      instructorName,
       seats,
       enrolled,
       status: "unpaid",
@@ -51,38 +51,39 @@ const ClassCard = ({ singleClass }) => {
       .catch((error) => console.log(error));
   };
   return (
-    <div data-aos="fade-down" className="card border relative">
+    <div data-aos="fade-down" className="card border relative mt-20">
       <img src={image} className="h-[220px]" alt="" />
       <div className="p-5 py-8">
         <h3 className="text-3xl font-semibold text-center">{name}</h3>
-        <p className="text-md text-center">{teacher_name}</p>
+        <p className="text-md text-center text-primary">{instructorName}</p>
         <div className="flex justify-between my-3 w-3/4 mx-auto">
-          <div className="text-center ">
-            <p className="font-bold text-3xl text-secondary">{enrolled || 0}</p>
-            <p className="text-lg text-slate-500">Enrolled</p>
+          <div className="text-center bg-primary bg-opacity-10 pr-5   pl-5 py-3">
+            <p className="font-bold text-2xl text-secondary">{enrolled || 0}</p>
+            <p className="text-md text-slate-500">Enrolled</p>
           </div>
-          <div className="text-center ">
-            <p className="font-bold text-3xl text-secondary">{seats}</p>
-            <p className="text-lg text-slate-500">Available</p>
+          <div className="text-center bg-primary bg-opacity-10 pr-5   border-l-2 border-primary pl-5 py-3">
+            <p className="font-bold text-2xl text-secondary">{seats}</p>
+            <p className="text-md text-slate-500">Available</p>
+          </div>
+          <div className="text-center bg-primary bg-opacity-10 pr-5    border-l-2 border-primary pl-5 py-3">
+            <p className="font-bold text-2xl text-secondary">${price}</p>
+            <p className="text-md text-slate-500">Price</p>
           </div>
         </div>
-        <p className="absolute top-5 right-5 bg-secondary px-4 py-1 text-white  font-bold bg-opacity-90">
-          ${price}
-        </p>
+
         {user ? (
           <button
             disabled={
               userRole === "admin" || userRole === "teacher" || seats < 1
             }
             onClick={() => handleSelectClass(singleClass)}
-            className="btn btn-secondary rounded-full w-full mt-5"
+            className="btn btn-primary rounded-full w-full mt-5"
           >
             Select
           </button>
         ) : (
           <Link to="/login">
-            {" "}
-            <button className="btn btn-secondary rounded-full w-full mt-5">
+            <button className="btn btn-primary rounded-full w-full mt-5">
               Select
             </button>
           </Link>

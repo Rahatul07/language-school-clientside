@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import logo from "../../../assets/logo.png";
@@ -18,36 +18,36 @@ const NavBar = () => {
   const navOptions = (
     <>
       <li>
-        <Link
+        <NavLink
           to="/"
           aria-label="Home"
           title="Home"
           className={({ isActive }) => (isActive ? "active" : "default")}
         >
           Home
-        </Link>
+        </NavLink>
       </li>
 
       <li>
-        <Link
+        <NavLink
           to="/instructors"
           className={({ isActive }) => (isActive ? "active" : "default")}
         >
           Instructors
-        </Link>
+        </NavLink>
       </li>
 
       <li>
-        <Link
-          to="/allClasses"
+        <NavLink
+          to="/classes"
           className={({ isActive }) => (isActive ? "active" : "default")}
         >
           Classes
-        </Link>
+        </NavLink>
       </li>
       {user && (
         <li>
-          <Link
+          <NavLink
             to={`${
               (userRole === "student" && "/dashboard/my_selected_class") ||
               (userRole === "admin" && "/dashboard/manage_classes") ||
@@ -56,7 +56,7 @@ const NavBar = () => {
             className={({ isActive }) => (isActive ? "active" : "default")}
           >
             Dashboard
-          </Link>
+          </NavLink>
         </li>
       )}
     </>
@@ -93,10 +93,10 @@ const NavBar = () => {
                     LogOut
                   </button>
                 ) : (
-                  <Link to="/login">
+                  <NavLink to="/login">
                     {" "}
                     <button className="btn btn-neutral">Login</button>
-                  </Link>
+                  </NavLink>
                 )}
               </div>
             </ul>
@@ -123,9 +123,9 @@ const NavBar = () => {
                     LogOut
                   </button>
                 ) : (
-                  <Link to="/login">
+                  <NavLink to="/login">
                     <button className="btn btn-neutral">Login</button>
-                  </Link>
+                  </NavLink>
                 )}
               </div>
 

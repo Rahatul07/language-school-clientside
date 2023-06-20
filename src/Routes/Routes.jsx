@@ -1,18 +1,28 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
-import SignUp from "../pages/SignUp/SignUp";
+import ErrorMessage from "../pages/ErrorPage/ErrorMessage";
 import Home from "../pages/Home/Home/Home";
-import Login from "../../src/pages/Login/Login";
-import ErrorMessage from "../pages/ErrorPage/ErrorPage";
+import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
+import Instructors from "../pages/Instructors";
+import Classes from "../pages/Classes";
+import PrivetRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard";
-import AllClasses from "../pages/AllClasses/AllClasses";
-import AllInstructors from "../pages/AllInstructors/AllInstructors";
-import PrivateRoute from "./PrivateRoute";
-import SelectedClasses from "../pages/Dashboard/SelectedClasses/SelectedClasses";
-import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
-import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import StudentRoute from "./StudentRoute";
+import SelectedClass from "../pages/Dashboard/SelectedClass";
+import EnrolledClass from "../pages/Dashboard/EnrolledClass";
+import Payment from "../pages/Dashboard/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory";
+import AddClass from "../pages/Dashboard/AddClass";
+import InstructorRoute from "./InstructorRoute";
+import MyClasses from "../pages/Dashboard/MyClasses";
+import UpdateMyClass from "../pages/Dashboard/UpdateMyClass";
+import AdminRoute from "./AdminRoute";
+import ManageStudents from "../pages/Dashboard/ManageStudents";
+import ManageClasses from "../pages/Dashboard/ManageClasses";
+import Feedback from "../pages/Dashboard/Feedback";
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
@@ -23,44 +33,117 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/signUp",
-        element: <SignUp />,
-      },
-      {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
-        path: "/allClasses",
-        element: <AllClasses />,
+        path: "signUp",
+        element: <SignUp />,
       },
       {
-        path: "/instructors",
-        element: <AllInstructors />,
+        path: "instructors",
+        element: <Instructors />,
+      },
+      {
+        path: "classes",
+        element: <Classes />,
       },
     ],
   },
   {
-    path: "/dashboard",
+    path: "dashboard",
     element: (
-      <PrivateRoute>
-        <Dashboard />
-      </PrivateRoute>
+      <PrivetRoute>
+        <Dashboard></Dashboard>
+      </PrivetRoute>
     ),
+    errorElement: <ErrorMessage />,
     children: [
+      // student routes
       {
-        path: "selectedClasses",
-        element: <SelectedClasses />,
+        path: "my_selected_class",
+        element: (
+          <StudentRoute>
+            <SelectedClass></SelectedClass>
+          </StudentRoute>
+        ),
       },
       {
-        path: "enrolledClasses",
-        element: <EnrolledClasses />,
+        path: "my_enrolled_class",
+        element: (
+          <StudentRoute>
+            <EnrolledClass />
+          </StudentRoute>
+        ),
       },
-      // admin routes
       {
-        path: "manageClasses",
-        element: <ManageUsers />,
+        path: "payment/:id",
+        element: (
+          <StudentRoute>
+            <Payment></Payment>
+          </StudentRoute>
+        ),
+      },
+      {
+        path: "payment_history",
+        element: (
+          <StudentRoute>
+            <PaymentHistory></PaymentHistory>
+          </StudentRoute>
+        ),
+      },
+      // teacher routes
+      {
+        path: "add_a_class",
+        element: (
+          <InstructorRoute>
+            <AddClass></AddClass>
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "my_classes",
+        element: (
+          <InstructorRoute>
+            <MyClasses></MyClasses>
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "update/:id",
+        element: (
+          <InstructorRoute>
+            <UpdateMyClass></UpdateMyClass>
+          </InstructorRoute>
+        ),
+      },
+
+      // Admin routes
+      {
+        path: "manage_students",
+        element: (
+          <AdminRoute>
+            <ManageStudents></ManageStudents>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manage_classes",
+        element: (
+          <AdminRoute>
+            <ManageClasses></ManageClasses>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "feedback/:id",
+        element: (
+          <AdminRoute>
+            <Feedback></Feedback>
+          </AdminRoute>
+        ),
       },
     ],
   },
 ]);
+export default router;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
-const TeacherClassRow = ({ singleClass, refetch }) => {
+const InstructorClassRow = ({ singleClass, refetch }) => {
   const [axiosSecure] = useAxiosSecure();
   const { name, image, seats, price, status, enrolled, _id, feedback } =
     singleClass || {};
@@ -72,4 +72,4 @@ const TeacherClassRow = ({ singleClass, refetch }) => {
   );
 };
 
-export default TeacherClassRow;
+export default InstructorClassRow;

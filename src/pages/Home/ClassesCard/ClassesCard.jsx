@@ -29,7 +29,7 @@ const ClassesCard = ({ course }) => {
             </div>
           </div>
           <div className="card-actions justify-end">
-            <Link to={`/allClasses`}>
+            <Link to={`/classes`}>
               <button className="btn btn-primary text-white">Details</button>
             </Link>
           </div>
